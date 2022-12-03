@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rrc.sceneController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#07131e" height="473.0" layoutX="13.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="725.0" />
+      <Button layoutX="300.0" layoutY="407.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="26.0" prefWidth="151.0" style="-fx-background-color: black;" text="Main Menu" textFill="WHITE" />
+      <Text fx:id="queue" fill="WHITE" layoutX="13.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="715.1300010681152" />
+   </children>
+</AnchorPane>
