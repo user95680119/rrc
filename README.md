@@ -1,10 +1,10 @@
-# FinalCS2
+# FinalCS2: Rust Raid Calculator (rrc)
 
-Please use this repository to submit your Final Project, the requirements for which are listed below. You may assist your fellow students but do NOT share answers/code. Additionally, this repo contains demo code that may help you complete your Final Project.
+### This repo contains software in both CLI and GUI forms which calculates the amount of supplies you need for a raid in the video game: Rust.
 
-Please delete the terminal and GUI directories and update the yml file by your last commit.
+#### Graphics User Interface.
 
-## Project Requirements
+#### Command Line Interface.
 
 - A well documented and useful README.md including
   - A description of your project
@@ -13,18 +13,3 @@ Please delete the terminal and GUI directories and update the yml file by your l
   - Sample output that may include images with captions and alt text
   - A description of your repository and overall software design 
   - Citations, Challenges, and anything else you feel is relevant
-- A functioning project with a working interface (terminal or graphical) that uses many of the following
-  - Lists, Sets, and/or Maps
-  - Recursion
-  - Stacks and/or Queues
-  - Custom generic ADTs (array or node based) if the default ones are unsuitable
-  - Heaps, Lambdas, and/or Streams
-- Well documented and useful Javdoc including 
-  - classes
-  - methods and 
-  - blocks of functionality
-  - cryptic individual lines
-- Thorough Testing via one of the following
-  - Simulated keyboard input
-  - JUnit test cases
-  - Uploaded JaCoCo report
