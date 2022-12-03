@@ -1,0 +1,714 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > sceneController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.rrc</a>
+</div>
+
+<h1>Coverage Summary for Class: sceneController (com.example.rrc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">sceneController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (55/55)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99%
+  </span>
+  <span class="absValue">
+    (386/390)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;// https://www.youtube.com/watch?v=9XJicRt_FaI
+&nbsp;// Credit to Bro Code on YouTube, I learned a lot of stuff about JavaFX from watching this one video.
+&nbsp;
+&nbsp;package com.example.rrc;
+&nbsp;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.FXMLLoader;
+&nbsp;import javafx.scene.Group;
+&nbsp;import javafx.scene.Node;
+&nbsp;import javafx.scene.Parent;
+&nbsp;import javafx.scene.Scene;
+&nbsp;import javafx.scene.control.Button;
+&nbsp;import javafx.scene.control.TextField;
+&nbsp;import javafx.scene.layout.AnchorPane;
+&nbsp;import javafx.scene.layout.Background;
+&nbsp;import javafx.scene.paint.Color;
+&nbsp;import javafx.scene.text.Text;
+&nbsp;import javafx.stage.Stage;
+&nbsp;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;public class sceneController {</b>
+&nbsp;
+&nbsp;    private Stage stage;
+&nbsp;    private Scene scene;
+&nbsp;    private Parent root;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private AnchorPane scenePane;
+&nbsp;
+&nbsp;    // A method used to close the GUI window.
+&nbsp;    public void exit() {
+<b class="fc">&nbsp;        stage = (Stage) scenePane.getScene().getWindow();</b>
+&nbsp;        // Closes the stage.
+<b class="fc">&nbsp;        stage.close();</b>
+&nbsp;    }
+&nbsp;    public void switchToSelectBlock(ActionEvent event) throws Exception {
+&nbsp;        // Method is run by a button press which switches stages and scenes to let the user add blocks to the queue.
+<b class="fc">&nbsp;        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(&quot;selectBlock.fxml&quot;)));</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void switchToSelectDeployable(ActionEvent event) throws Exception {
+&nbsp;        // Method is run by a button press which switches stages and scenes to let the user add deployables to the queue.
+<b class="fc">&nbsp;        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(&quot;selectDeployableType.fxml&quot;)));</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public static Text totalCost;
+&nbsp;
+&nbsp;    // This method is run by a button and switches to the calculate screen where the elements in the queue are tallied
+&nbsp;    // up and neatly printed out.
+&nbsp;    public void switchToCalculateCost(ActionEvent event) {
+<b class="fc">&nbsp;        totalCost = new Text();</b>
+&nbsp;        // Uses method from CalculateCost class.
+<b class="fc">&nbsp;        CalculateCost.calc();</b>
+<b class="fc">&nbsp;        Group root = new Group();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        Scene scene1 = new Scene(root,750,500,Color.web(&quot;#07131e&quot;));</b>
+<b class="fc">&nbsp;        Button but = new Button(&quot;Main Menu&quot;);</b>
+&nbsp;        // Makes a button with the specified traits below, including an action to go to the main menu.
+<b class="fc">&nbsp;        but.setTranslateX(300);</b>
+<b class="fc">&nbsp;        but.setTranslateY(407);</b>
+<b class="fc">&nbsp;        but.prefHeight(26);</b>
+<b class="fc">&nbsp;        but.prefWidth(151);</b>
+<b class="fc">&nbsp;        but.setBackground(Background.fill(Color.BLACK));</b>
+<b class="fc">&nbsp;        but.setTextFill(Color.WHITE);</b>
+<b class="fc">&nbsp;        root.getChildren().add(but);</b>
+<b class="fc">&nbsp;        but.setOnAction(event1 -&gt; { //https://jenkov.com/tutorials/javafx/button.html this tutorial helped me write this.</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                mainMenu(event1);</b>
+<b class="nc">&nbsp;            } catch (Exception e) {</b>
+<b class="nc">&nbsp;                throw new RuntimeException(e);</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        // Properties set for the stage.
+<b class="fc">&nbsp;        root.setTranslateX(0);</b>
+<b class="fc">&nbsp;        root.setTranslateY(0);</b>
+<b class="fc">&nbsp;        stage.setScene(scene1);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+<b class="fc">&nbsp;        stage.setX(750);</b>
+<b class="fc">&nbsp;        stage.setY(500);</b>
+<b class="fc">&nbsp;        stage.setResizable(false);</b>
+&nbsp;
+&nbsp;
+&nbsp;        // Test formatted neatly to print the total raid cost of the elements in the queue and the most efficient way of
+&nbsp;        // raiding.
+<b class="fc">&nbsp;        Text txt = new Text();</b>
+<b class="fc">&nbsp;        CalculateCost.cheapest();</b>
+<b class="fc">&nbsp;        txt.setText(&quot;Total Cost:&quot; +</b>
+&nbsp;                &quot;\nRockets: &quot; + CalculateCost.totalRockets +
+&nbsp;                &quot;\nExplosive 5.56: &quot; + CalculateCost.total556 +
+&nbsp;                &quot;\nC4: &quot; + CalculateCost.totalC4 +
+&nbsp;                &quot;\nSatchels: &quot; + CalculateCost.totalSatchels +
+&nbsp;                &quot;\nF1 Grenades: &quot; + CalculateCost.totalF1s +
+&nbsp;                &quot;\nBeancan Grenades: &quot; + CalculateCost.totalBeancans +
+&nbsp;                &quot;\nHigh Velocity Rockets: &quot; + CalculateCost.totalHVs +
+&nbsp;                &quot;\n40mm HE Grenades: &quot; + CalculateCost.totalHEs +
+&nbsp;                &quot;\nMLRS Rockets: &quot; + CalculateCost.totalMLRS +
+&nbsp;                &quot;\n\nCheapest way to raid is by using : &quot; + CalculateCost.tool + &quot;, the sulfur cost would be: &quot; + CalculateCost.sulfurCost);
+<b class="fc">&nbsp;        txt.setFill(Color.WHITE);</b>
+<b class="fc">&nbsp;        txt.setX(50);</b>
+<b class="fc">&nbsp;        txt.setY(50);</b>
+&nbsp;
+<b class="fc">&nbsp;        root.getChildren().add(txt);</b>
+&nbsp;    }
+&nbsp;    // Stage switch method that is triggered by a button press.
+&nbsp;    public void switchToClearQueue(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        RustCalculator.clearQueue();</b>
+<b class="fc">&nbsp;        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(&quot;clearQueue.fxml&quot;)));</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Stage switch method that is triggered by a button press.
+&nbsp;    public void mainMenu(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(&quot;scene1.fxml&quot;)));</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static String selected;
+&nbsp;
+&nbsp;    // Stage switch method that is triggered by a button press and changes the &#39;selected&#39; variable accordingly.
+&nbsp;    public void pickTwigBlock(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;twig&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmount.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    // Stage switch method that is triggered by a button press and changes the &#39;selected&#39; variable accordingly.
+&nbsp;    public void pickWoodBlock(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wood&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmount.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    // Stage switch method that is triggered by a button press and changes the &#39;selected&#39; variable accordingly.
+&nbsp;    public void pickStoneBlock(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;stone&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmount.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    // Stage switch method that is triggered by a button press and changes the &#39;selected&#39; variable accordingly.
+&nbsp;    public void pickMetalBlock(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;metal&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmount.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    // Stage switch method that is triggered by a button press and changes the &#39;selected&#39; variable accordingly.
+&nbsp;    public void pickArmorBlock(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;armor&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmount.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    TextField textAmountBox;
+&nbsp;
+&nbsp;    // Used to submit the amount of blocks entered by the user in a textBox.
+&nbsp;    public void submitAmount(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        String amount = textAmountBox.getText();</b>
+&nbsp;
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountPass.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;
+&nbsp;        // Passes the gathered data into a different method.
+<b class="fc">&nbsp;        submit(amount);</b>
+&nbsp;    }
+&nbsp;    @FXML
+&nbsp;    TextField textAmountBoxDeployables;
+&nbsp;
+&nbsp;    // Used to submit the amount of deployables entered by the user in a textBox.
+&nbsp;    public void submitAmountDeployables(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        String amount = textAmountBoxDeployables.getText();</b>
+&nbsp;
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountPass.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;
+&nbsp;        // Passes the gathered data into a different method.
+<b class="fc">&nbsp;        submitDeployables(amount);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // This method passes the earlier selected block and the recently gathered amount data to add a specific
+&nbsp;    // amount of blocks to the queue.
+&nbsp;    public void submit(String amount) {
+&nbsp;        int parsed;
+&nbsp;        try {
+&nbsp;            // Try catch to make sure there are no words entered instead of numbers.
+<b class="fc">&nbsp;            parsed = Integer.parseInt(amount);</b>
+<b class="fc">&nbsp;            RustCalculator.blockQueueAdd(selected, parsed);</b>
+<b class="fc">&nbsp;        } catch (NumberFormatException ignored) {</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // This method passes the earlier selected deployable and the recently gathered amount data to add a specific
+&nbsp;    // amount of deployables to the queue.
+&nbsp;    public void submitDeployables(String amount) {
+&nbsp;        int parsed;
+&nbsp;        try {
+&nbsp;            // Try catch to make sure there are no words entered instead of numbers.
+<b class="fc">&nbsp;            parsed = Integer.parseInt(amount);</b>
+<b class="fc">&nbsp;            RustCalculator.deployableQueueAdd(selected, parsed);</b>
+<b class="fc">&nbsp;        } catch (NumberFormatException ignored) {</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Method that prints the queue to the user.
+&nbsp;    public void displayList(ActionEvent event) {
+<b class="fc">&nbsp;        Group root = new Group();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        Scene scene1 = new Scene(root,750,500,Color.web(&quot;#07131e&quot;));</b>
+<b class="fc">&nbsp;        Button but = new Button(&quot;Main Menu&quot;);</b>
+<b class="fc">&nbsp;        but.setTranslateX(300);</b>
+<b class="fc">&nbsp;        but.setTranslateY(407);</b>
+<b class="fc">&nbsp;        but.prefHeight(26);</b>
+<b class="fc">&nbsp;        but.prefWidth(151);</b>
+<b class="fc">&nbsp;        but.setBackground(Background.fill(Color.BLACK));</b>
+<b class="fc">&nbsp;        but.setTextFill(Color.WHITE);</b>
+<b class="fc">&nbsp;        root.getChildren().add(but);</b>
+<b class="fc">&nbsp;        but.setOnAction(event1 -&gt; { //https://jenkov.com/tutorials/javafx/button.html same website helped with the</b>
+&nbsp;            // same thing as earlier.
+&nbsp;            try {
+<b class="fc">&nbsp;                mainMenu(event1);</b>
+<b class="nc">&nbsp;            } catch (Exception e) {</b>
+<b class="nc">&nbsp;                throw new RuntimeException(e);</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        });
+&nbsp;
+&nbsp;        // Properties set for the stage.
+<b class="fc">&nbsp;        root.setTranslateX(0);</b>
+<b class="fc">&nbsp;        root.setTranslateY(0);</b>
+<b class="fc">&nbsp;        stage.setScene(scene1);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+<b class="fc">&nbsp;        stage.setX(750);</b>
+<b class="fc">&nbsp;        stage.setY(500);</b>
+<b class="fc">&nbsp;        stage.setResizable(false);</b>
+&nbsp;
+&nbsp;
+&nbsp;        // Text is set at a wrapping width of 800 to prevent letters trailing out of the window.
+<b class="fc">&nbsp;        Text txt = new Text();</b>
+<b class="fc">&nbsp;        txt.setWrappingWidth(800);</b>
+&nbsp;        // Simply prints the already formatted queue.
+<b class="fc">&nbsp;        txt.setText(&quot;&quot; + RustCalculator.blockQueue);</b>
+<b class="fc">&nbsp;        txt.setFill(Color.WHITE);</b>
+<b class="fc">&nbsp;        txt.setX(50);</b>
+<b class="fc">&nbsp;        txt.setY(50);</b>
+&nbsp;
+<b class="fc">&nbsp;        root.getChildren().add(txt);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    // The methods below this comment are to redirect the user with buttons and different fxml pages.
+&nbsp;    // Each method has a different link to a fxml file.
+&nbsp;    public void selectDoor(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectDoor.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void selectWindow(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectWindow.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void selectBarricade(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectBarricade.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void selectStorage(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectStorage.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void selectExternal(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectExternal.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void selectHatch(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectHatch.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void selectFence(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectFence.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void pickWoodDoor(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wood&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickMetalDoor(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;metal&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickArmorDoor(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;armored&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickGarageDoor(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;garage&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickWoodenBars(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wooden bars&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickStrengthenedGlass(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;strengthened glass&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickMetalBars(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;metal bars&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickReinforcedGlass(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;reinforced glass&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickWoodWall(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wood wall&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickWoodGate(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wood gate&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickStoneWall(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;stone wall&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickStoneGate(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;stone gate&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickStoneBarricade(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;stone&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickWoodenCover(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wooden cover&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickSandbag(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;sandbag&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickWoodBarricade(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;wood&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickBarbedWood(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;barbed wood&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickConcrete(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;concrete&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickMetalBarricade(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;metal&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickTriangleHatch(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;triangle&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickSquareHatch(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;square&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickDropBox(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;drop box&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickSmallBox(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;small box&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickFridge(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;fridge&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickLargeBox(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;large box&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickLocker(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;locker&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickVendingMachine(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;vending machine&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickFence(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;fence&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;    public void pickGate(ActionEvent event) throws Exception {
+<b class="fc">&nbsp;        selected = &quot;gate&quot;;</b>
+<b class="fc">&nbsp;        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;selectAmountDeployables.fxml&quot;));</b>
+<b class="fc">&nbsp;        root = loader.load();</b>
+<b class="fc">&nbsp;        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();</b>
+<b class="fc">&nbsp;        scene = new Scene(root);</b>
+<b class="fc">&nbsp;        stage.setScene(scene);</b>
+<b class="fc">&nbsp;        stage.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-03 14:22</div>
+</div>
+</body>
+</html>

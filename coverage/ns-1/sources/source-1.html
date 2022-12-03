@@ -1,0 +1,920 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CalculateCost</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.rrc</a>
+</div>
+
+<h1>Coverage Summary for Class: CalculateCost (com.example.rrc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CalculateCost</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.9%
+  </span>
+  <span class="absValue">
+    (723/731)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.rrc;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+<b class="nc">&nbsp;public class CalculateCost {</b>
+&nbsp;
+&nbsp;    public static int totalRockets, total556, totalC4, totalSatchels, totalF1s, totalBeancans, totalHVs, totalHEs, totalMLRS;
+&nbsp;
+&nbsp;    // A global counter for the total cost of a raid.
+&nbsp;    public static void resetTotal() {
+<b class="fc">&nbsp;        totalRockets = 0;</b>
+<b class="fc">&nbsp;        total556 = 0;</b>
+<b class="fc">&nbsp;        totalC4 = 0;</b>
+<b class="fc">&nbsp;        totalSatchels = 0;</b>
+<b class="fc">&nbsp;        totalF1s = 0;</b>
+<b class="fc">&nbsp;        totalBeancans = 0;</b>
+<b class="fc">&nbsp;        totalHVs = 0;</b>
+<b class="fc">&nbsp;        totalHEs = 0;</b>
+<b class="fc">&nbsp;        totalMLRS = 0;</b>
+&nbsp;    }
+&nbsp;    public static void calc() {
+<b class="fc">&nbsp;        Data.reset();   // Resets all data before calculation to make sure nothing gets mixed up.</b>
+<b class="fc">&nbsp;        resetTotal();</b>
+<b class="fc">&nbsp;        if (RustCalculator.blockQueue.isEmpty()) {</b>
+&nbsp;            // Checks if the queue is empty and replies with the message below.
+<b class="nc">&nbsp;            System.out.println(&quot;The queue is empty! Try adding blocks or deployables to get the cost of a raid.&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // These blocks of code are altered for each structure, but they server the same purpose.
+<b class="fc">&nbsp;        Queue&lt;String&gt; aux = new LinkedList&lt;&gt;(RustCalculator.blockQueue);</b>
+&nbsp;        // An auxiliary queue is used to easily remove from a duplicate of the original queue and keep the original&#39;s integrity.
+<b class="fc">&nbsp;        while (!aux.isEmpty()) {</b>
+&nbsp;            // Loops until the auxiliary queue is empty.
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;twig block&quot;)) {</b>
+&nbsp;                // Tests if the current peeked element is equal to the block&#39;s structure. In this case it is a twig block.
+&nbsp;                // If the element matches the String, the total costs are calculated by dividing the structure&#39;s health
+&nbsp;                // by the damage that the specific weapon does to the structure. The total is then rounded.
+<b class="fc">&nbsp;                double costRocket = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.buildingBlocks.get(&quot;Twig&quot;) / Data.dmgTwig.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wood block&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.buildingBlocks.get(&quot;Wood&quot;) / Data.dmgWood.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;stone block&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.buildingBlocks.get(&quot;Stone&quot;) / Data.dmgStone.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;metal block&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.buildingBlocks.get(&quot;Metal&quot;) / Data.dmgMetal.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;armor block&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.buildingBlocks.get(&quot;Armor&quot;) / Data.dmgArmor.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wooden bars deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Wooden Bars&quot;) / Data.dmgWoodenBars.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;strengthened glass deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Strengthened Glass&quot;) / Data.dmgStrengthenedGlass.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;metal bars deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Metal Bars&quot;) / Data.dmgMetalBars.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;reinforced glass deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Reinforced Glass&quot;) / Data.dmgReinforcedGlass.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wood deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Wood Door&quot;) / Data.dmgWoodDoor.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;metal deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Metal Door&quot;) / Data.dmgMetalDoor.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;armored deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Armor Door&quot;) / Data.dmgArmoredDoor.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;garage deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Garage Door&quot;) / Data.dmgGarageDoor.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wood wall deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;High Wooden Wall&quot;) / Data.dmgWoodWall.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;stone wall deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;High Stone Wall&quot;) / Data.dmgStoneWall.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wood gate deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Wood Gate&quot;) / Data.dmgWoodGate.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;stone gate deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Stone Gate&quot;) / Data.dmgStoneGate.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;stone deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Stone Barricade&quot;) / Data.dmgStoneBarricade.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wooden cover deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Wooden Cover&quot;) / Data.dmgWoodenCover.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;sandbag deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Sandbag&quot;) / Data.dmgSandbag.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;wood deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Wood Barricade&quot;) / Data.dmgWoodBarricade.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;barbed wood deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Barbed Wood Barricade&quot;) / Data.dmgBarbedWood.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;concrete deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Concrete Barricade&quot;) / Data.dmgConcrete.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;metal deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Metal Barricade&quot;) / Data.dmgMetalBarricade.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;triangle deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Triangle Hatch&quot;) / Data.dmgTriangleHatch.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;square deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Square Hatch&quot;) / Data.dmgSquareHatch.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;drop box deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Drop Box&quot;) / Data.dmgDropBox.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;small box deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Small Box&quot;) / Data.dmgSmallBox.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;fridge deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Fridge&quot;) / Data.dmgFridge.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;large box deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Large Box&quot;) / Data.dmgLargeBox.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;locker deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Locker&quot;) / Data.dmgLocker.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;vending machine deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Vending Machine&quot;) / Data.dmgVendingMachine.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;fence deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Fence&quot;) / Data.dmgFence.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (Objects.equals(aux.peek(), &quot;gate deployable&quot;)) {</b>
+<b class="fc">&nbsp;                double costRocket = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;Rocket&quot;));</b>
+<b class="fc">&nbsp;                double cost556 = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;Explosive 5.56&quot;));</b>
+<b class="fc">&nbsp;                double costC4 = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;C4&quot;));</b>
+<b class="fc">&nbsp;                double costSatchels = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;Satchel&quot;));</b>
+<b class="fc">&nbsp;                double costF1s = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;F1 Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costBeancans = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;Beancan Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costHVs = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;High Velocity Rocket&quot;));</b>
+<b class="fc">&nbsp;                double costHEs = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;40mm HE Grenade&quot;));</b>
+<b class="fc">&nbsp;                double costMLRS = (Data.deployables.get(&quot;Gate&quot;) / Data.dmgGate.get(&quot;MLRS Rocket&quot;));</b>
+<b class="fc">&nbsp;                totalRockets += (int) Math.round(costRocket);</b>
+<b class="fc">&nbsp;                total556 += (int) Math.round(cost556);</b>
+<b class="fc">&nbsp;                totalC4 += (int) Math.round(costC4);</b>
+<b class="fc">&nbsp;                totalSatchels += (int) Math.round(costSatchels);</b>
+<b class="fc">&nbsp;                totalF1s += (int) Math.round(costF1s);</b>
+<b class="fc">&nbsp;                totalBeancans += (int) Math.round(costBeancans);</b>
+<b class="fc">&nbsp;                totalHVs += (int) Math.round(costHVs);</b>
+<b class="fc">&nbsp;                totalHEs += (int) Math.round(costHEs);</b>
+<b class="fc">&nbsp;                totalMLRS += (int) Math.round(costMLRS);</b>
+<b class="fc">&nbsp;                aux.remove();</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;        // Calls a method to find out the cheapest way to raid the structures in the queue.
+<b class="fc">&nbsp;        cheapest();</b>
+<b class="fc">&nbsp;        sceneController.totalCost.setText(&quot;Total Cost:&quot; +</b>
+&nbsp;                &quot;\nRockets: &quot; + totalRockets +
+&nbsp;                &quot;\nExplosive 5.56: &quot; + total556 +
+&nbsp;                &quot;\nC4: &quot; + totalC4 +
+&nbsp;                &quot;\nSatchels: &quot; + totalSatchels +
+&nbsp;                &quot;\nF1 Grenades: &quot; + totalF1s +
+&nbsp;                &quot;\nBeancan Grenades: &quot; + totalBeancans +
+&nbsp;                &quot;\nHigh Velocity Rockets: &quot; + totalHVs +
+&nbsp;                &quot;\n40mm HE Grenades: &quot; + totalHEs +
+&nbsp;                &quot;\nMLRS Rockets: &quot; + totalMLRS +
+&nbsp;                &quot;\n\nCheapest way to raid is by using : &quot; + tool + &quot;, the sulfur cost would be: &quot; + sulfurCost);
+&nbsp;        // Neatly prints the total costs for each weapon/tool.
+&nbsp;    }
+&nbsp;    public static int sulfurCost;
+&nbsp;    public static String tool;
+&nbsp;    // Public variables so that the method above can use the values found in the method below.
+&nbsp;
+&nbsp;    // Calculates the cheapest way to raid a structure by multiplying the total amount of weapons/tools by their sulfur
+&nbsp;    // costs. Then, a set is used to naturally order the values, least to greatest and an iterator is used to get the
+&nbsp;    // first element which is the lowest. Then the element is tested to see which total sulfur cost it matches.
+&nbsp;    public static void cheapest() {
+<b class="fc">&nbsp;        double totalSulfRockets = totalRockets * Data.sulfurCosts.get(&quot;Rocket&quot;);</b>
+<b class="fc">&nbsp;        double totalSulf556 = total556 * Data.sulfurCosts.get(&quot;Explosive 5.56&quot;);</b>
+<b class="fc">&nbsp;        double totalSulfC4 = totalC4 * Data.sulfurCosts.get(&quot;C4&quot;);</b>
+<b class="fc">&nbsp;        double totalSulfSatchels = totalSatchels * Data.sulfurCosts.get(&quot;Satchel&quot;);</b>
+<b class="fc">&nbsp;        double totalSulfF1s = totalF1s * Data.sulfurCosts.get(&quot;F1 Grenade&quot;);</b>
+<b class="fc">&nbsp;        double totalSulfBeancans = totalBeancans * Data.sulfurCosts.get(&quot;Beancan Grenade&quot;);</b>
+<b class="fc">&nbsp;        double totalSulfHVs = totalHVs * Data.sulfurCosts.get(&quot;High Velocity Rocket&quot;);</b>
+<b class="fc">&nbsp;        Set&lt;Double&gt; costsSorted = new TreeSet&lt;&gt;();  // Used to naturally order the values from least to greatest.</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulfRockets);</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulf556);</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulfC4);</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulfSatchels);</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulfF1s);</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulfBeancans);</b>
+<b class="fc">&nbsp;        costsSorted.add(totalSulfHVs);</b>
+&nbsp;
+<b class="fc">&nbsp;        Iterator&lt;Double&gt; itr = costsSorted.iterator();  // Used to get the first value of the sorted set.</b>
+<b class="fc">&nbsp;        double least = itr.next();</b>
+<b class="fc">&nbsp;        sulfurCost = (int) Math.round(least);</b>
+&nbsp;        // Rounds the value to an integer and compares it to the sulfur costs to see which tool matches.
+<b class="fc">&nbsp;        if (least == totalSulfRockets) {</b>
+<b class="nc">&nbsp;            tool = &quot;Rockets&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (least == totalSulf556) {</b>
+<b class="fc">&nbsp;            tool = &quot;Explosive 5.56 Rounds&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (least == totalSulfC4) {</b>
+<b class="nc">&nbsp;            tool = &quot;C4&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (least == totalSulfSatchels) {</b>
+<b class="nc">&nbsp;            tool = &quot;Satchels&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (least == totalSulfF1s) {</b>
+<b class="nc">&nbsp;            tool = &quot;F1 Grenades&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (least == totalSulfBeancans) {</b>
+<b class="nc">&nbsp;            tool = &quot;Beancan Grenades&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (least == totalSulfHVs) {</b>
+<b class="nc">&nbsp;            tool = &quot;High Velocity Rockets&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-03 14:22</div>
+</div>
+</body>
+</html>

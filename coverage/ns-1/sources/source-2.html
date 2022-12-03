@@ -1,0 +1,577 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Data</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.rrc</a>
+</div>
+
+<h1>Coverage Summary for Class: Data (com.example.rrc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Data</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.7%
+  </span>
+  <span class="absValue">
+    (384/385)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.rrc;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+<b class="nc">&nbsp;public class Data {</b>
+&nbsp;
+&nbsp;    // I used HashMaps to easily have health values and names associated with each other.
+&nbsp;    public static HashMap&lt;String, Double&gt; buildingBlocks, deployables, dmgTwig, dmgWood, dmgStone, dmgMetal, dmgArmor,
+&nbsp;            dmgWoodenBars, dmgStrengthenedGlass, dmgMetalBars, dmgReinforcedGlass, dmgWoodDoor, dmgMetalDoor, dmgArmoredDoor,
+&nbsp;            dmgGarageDoor, dmgWoodWall, dmgStoneWall, dmgWoodGate, dmgStoneGate, dmgStoneBarricade, dmgWoodenCover,
+&nbsp;            dmgSandbag, dmgWoodBarricade, dmgBarbedWood, dmgConcrete, dmgMetalBarricade, dmgTriangleHatch, dmgSquareHatch,
+&nbsp;            dmgDropBox, dmgSmallBox, dmgFridge, dmgLargeBox, dmgLocker, dmgVendingMachine, dmgFence, dmgGate, sulfurCosts;
+&nbsp;
+&nbsp;    public static void reset() {
+&nbsp;        // Data of damage towards Wooden Bars
+<b class="fc">&nbsp;        dmgWoodenBars = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;Explosive 5.56&quot;, 5.102040816);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;Satchel&quot;, 83.3334);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;F1 Grenade&quot;, 4.237288136);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;Beancan Grenade&quot;, 19.23076923);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;High Velocity Rocket&quot;, 27.77777778);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;40mm HE Grenade&quot;, 31.25);</b>
+<b class="fc">&nbsp;        dmgWoodenBars.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Strengthened Glass
+<b class="fc">&nbsp;        dmgStrengthenedGlass = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;Explosive 5.56&quot;, 2.5);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;Rocket&quot;, 116.6666667);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;C4&quot;, 175.0);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;Satchel&quot;, 38.88888889);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;F1 Grenade&quot;, 1.005747126);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;Beancan Grenade&quot;, 8.974358974);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;High Velocity Rocket&quot;, 14.58333333);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;40mm HE Grenade&quot;, 17.5);</b>
+<b class="fc">&nbsp;        dmgStrengthenedGlass.put(&quot;MLRS Rocket&quot;, 175.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Metal Bars
+<b class="fc">&nbsp;        dmgMetalBars = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;Explosive 5.56&quot;, 2.5);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;Satchel&quot;, 41.66666667);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;F1 Grenade&quot;, 1.006036217);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;Beancan Grenade&quot;, 8.928571429);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;High Velocity Rocket&quot;, 14.70588235);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;40mm HE Grenade&quot;, 17.24137931);</b>
+<b class="fc">&nbsp;        dmgMetalBars.put(&quot;MLRS Rocket&quot;, 166.6666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Reinforced Glass
+<b class="fc">&nbsp;        dmgReinforcedGlass = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;Explosive 5.56&quot;, 2.5);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;Satchel&quot;, 41.66666667);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;F1 Grenade&quot;, 1.006036217);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;Beancan Grenade&quot;, 8.928571429);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;High Velocity Rocket&quot;, 14.70588235);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;40mm HE Grenade&quot;, 17.24137931);</b>
+<b class="fc">&nbsp;        dmgReinforcedGlass.put(&quot;MLRS Rocket&quot;, 166.6666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Wooden Doors
+<b class="fc">&nbsp;        dmgWoodDoor = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;Explosive 5.56&quot;, 10.52631579);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;Rocket&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;C4&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;Satchel&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;F1 Grenade&quot;, 8.695652174);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;Beancan Grenade&quot;, 33.33333333);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;High Velocity Rocket&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;40mm HE Grenade&quot;, 66.66666667);</b>
+<b class="fc">&nbsp;        dmgWoodDoor.put(&quot;MLRS Rocket&quot;, 200.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Metal Doors
+<b class="fc">&nbsp;        dmgMetalDoor = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;Explosive 5.56&quot;, 3.968253968);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;Satchel&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;Beancan Grenade&quot;, 13.88888889);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;High Velocity Rocket&quot;, 22.72727273);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;40mm HE Grenade&quot;, 27.77777778);</b>
+<b class="fc">&nbsp;        dmgMetalDoor.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Armored Doors
+<b class="fc">&nbsp;        dmgArmoredDoor = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;Explosive 5.56&quot;, 4.0);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;Rocket&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;C4&quot;, 400.0);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;Satchel&quot;, 66.66666667);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;Beancan Grenade&quot;, 14.28571429);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;High Velocity Rocket&quot;, 23.52941176);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;40mm HE Grenade&quot;, 17.24137931);</b>
+<b class="fc">&nbsp;        dmgArmoredDoor.put(&quot;MLRS Rocket&quot;, 266.6666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Garage Doors
+<b class="fc">&nbsp;        dmgGarageDoor = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;Explosive 5.56&quot;, 4.0);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;Rocket&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;C4&quot;, 300.0);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;Satchel&quot;, 66.66666666666667);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;Beancan Grenade&quot;, 14.285714286);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;High Velocity Rocket&quot;, 24.0);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;40mm HE Grenade&quot;, 27.272727273);</b>
+<b class="fc">&nbsp;        dmgGarageDoor.put(&quot;MLRS Rocket&quot;, 200.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Wooden High Walls
+<b class="fc">&nbsp;        dmgWoodWall = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;Explosive 5.56&quot;, 5.102040816326531);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;Rocket&quot;, 166.6666666666667);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;Satchel&quot;, 83.33333333333333);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;F1 Grenade&quot;, 4.23728813559322);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;Beancan Grenade&quot;, 19.23076923076923);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;High Velocity Rocket&quot;, 27.77777777777778);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;40mm HE Grenade&quot;, 31.25);</b>
+<b class="fc">&nbsp;        dmgWoodWall.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Stone High Walls
+<b class="fc">&nbsp;        dmgStoneWall = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;Explosive 5.56&quot;, 2.702702702702703);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;Satchel&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;F1 Grenade&quot;, 2.747252747252747);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;Beancan Grenade&quot;, 10.8695652173913);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;High Velocity Rocket&quot;, 15.625);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;40mm HE Grenade&quot;, 17.24137931034483);</b>
+<b class="fc">&nbsp;        dmgStoneWall.put(&quot;MLRS Rocket&quot;, 166.6666666666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Wood High Gates
+<b class="fc">&nbsp;        dmgWoodGate = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;Explosive 5.56&quot;, 5.102040816326531);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;Rocket&quot;, 166.6666666666667);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;Satchel&quot;, 83.33333333333333);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;F1 Grenade&quot;, 4.23728813559322);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;Beancan Grenade&quot;, 19.23076923076923);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;High Velocity Rocket&quot;, 27.77777777777778);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;40mm HE Grenade&quot;, 31.25);</b>
+<b class="fc">&nbsp;        dmgWoodGate.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Stone High Gates
+<b class="fc">&nbsp;        dmgStoneGate = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;Explosive 5.56&quot;, 2.702702702702703);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;Satchel&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;F1 Grenade&quot;, 2.747252747252747);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;Beancan Grenade&quot;, 10.8695652173913);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;High Velocity Rocket&quot;, 15.625);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;40mm HE Grenade&quot;, 17.24137931034483);</b>
+<b class="fc">&nbsp;        dmgStoneGate.put(&quot;MLRS Rocket&quot;, 166.6666666666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Stone Barricades
+<b class="fc">&nbsp;        dmgStoneBarricade = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;Explosive 5.56&quot;, 9.090909090909091);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;Rocket&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;C4&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;Satchel&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;F1 Grenade&quot;, 8.333333333333333);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;Beancan Grenade&quot;, 25.0);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;High Velocity Rocket&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;40mm HE Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgStoneBarricade.put(&quot;MLRS Rocket&quot;, 100.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Wooden Covers
+<b class="fc">&nbsp;        dmgWoodenCover = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;Explosive 5.56&quot;, 5.454545454545455);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;Rocket&quot;, 120.0);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;C4&quot;, 120.0);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;Satchel&quot;, 120.0);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;F1 Grenade&quot;, 4.137931034482759);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;Beancan Grenade&quot;, 17.14285714285714);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;High Velocity Rocket&quot;, 30.0);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;40mm HE Grenade&quot;, 30.0);</b>
+<b class="fc">&nbsp;        dmgWoodenCover.put(&quot;MLRS Rocket&quot;, 120.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Sandbag Barricades
+<b class="fc">&nbsp;        dmgSandbag = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;Explosive 5.56&quot;, 9.090909090909091);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;Rocket&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;C4&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;Satchel&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;F1 Grenade&quot;, 8.695652173913043);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;Beancan Grenade&quot;, 25.0);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;High Velocity Rocket&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;40mm HE Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgSandbag.put(&quot;MLRS Rocket&quot;, 200.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Wooden Barricades
+<b class="fc">&nbsp;        dmgWoodBarricade = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;Explosive 5.56&quot;, 11.36363636363636);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;Rocket&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;Satchel&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;F1 Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;Beancan Grenade&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;High Velocity Rocket&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;40mm HE Grenade&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgWoodBarricade.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Barbed Wooden Barricades
+<b class="fc">&nbsp;        dmgBarbedWood = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;Explosive 5.56&quot;, 11.42857142857143);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;Rocket&quot;, 400.0);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;C4&quot;, 400.0);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;Satchel&quot;, 400.0);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;F1 Grenade&quot;, 57.14285714285714);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;Beancan Grenade&quot;, 66.66666666666667);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;High Velocity Rocket&quot;, 57.14285714285714);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;40mm HE Grenade&quot;, 80.0);</b>
+<b class="fc">&nbsp;        dmgBarbedWood.put(&quot;MLRS Rocket&quot;, 400.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Concrete Barricades
+<b class="fc">&nbsp;        dmgConcrete = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;Explosive 5.56&quot;, 9.433962264150943);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;Rocket&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;C4&quot;, 500.0);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;Satchel&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;F1 Grenade&quot;, 8.620689655172414);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;Beancan Grenade&quot;, 26.31578947368421);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;High Velocity Rocket&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;40mm HE Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgConcrete.put(&quot;MLRS Rocket&quot;, 500.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Metal Barricades
+<b class="fc">&nbsp;        dmgMetalBarricade = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;Explosive 5.56&quot;, 5.405405405405405);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;Rocket&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;C4&quot;, 600.0);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;Satchel&quot;, 150.0);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;F1 Grenade&quot;, 1.749271137026239);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;Beancan Grenade&quot;, 15.78947368421053);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;High Velocity Rocket&quot;, 30.0);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;40mm HE Grenade&quot;, 35.29411764705882);</b>
+<b class="fc">&nbsp;        dmgMetalBarricade.put(&quot;MLRS Rocket&quot;, 300.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Triangle Ladder Hatch
+<b class="fc">&nbsp;        dmgTriangleHatch = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;Explosive 5.56&quot;, 3.968253968253968);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;Satchel&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;Beancan Grenade&quot;, 13.88888888888889);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;High Velocity Rocket&quot;, 22.72727272727273);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;40mm HE Grenade&quot;, 27.77777777777778);</b>
+<b class="fc">&nbsp;        dmgTriangleHatch.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Square Ladder Hatch
+<b class="fc">&nbsp;        dmgSquareHatch = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;Explosive 5.56&quot;, 3.968253968253968);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;Satchel&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;Beancan Grenade&quot;, 13.88888888888889);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;High Velocity Rocket&quot;, 22.72727272727273);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;40mm HE Grenade&quot;, 27.77777777777778);</b>
+<b class="fc">&nbsp;        dmgSquareHatch.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Drop Boxes
+<b class="fc">&nbsp;        dmgDropBox = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;Explosive 5.56&quot;, 2.857142857142857);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;Rocket&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;C4&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;Satchel&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;F1 Grenade&quot;, 1.724137931034483);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;Beancan Grenade&quot;, 8.333333333333333);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;High Velocity Rocket&quot;, 14.28571428571429);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;40mm HE Grenade&quot;, 16.66666666666667);</b>
+<b class="fc">&nbsp;        dmgDropBox.put(&quot;MLRS Rocket&quot;, 100.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Small Boxes
+<b class="fc">&nbsp;        dmgSmallBox = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;Explosive 5.56&quot;, 8.823529411764706);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;Rocket&quot;, 150.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;C4&quot;, 150.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;Satchel&quot;, 150.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;F1 Grenade&quot;, 75.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;Beancan Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;High Velocity Rocket&quot;, 150.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;40mm HE Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgSmallBox.put(&quot;MLRS Rocket&quot;, 150.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Fridges
+<b class="fc">&nbsp;        dmgFridge = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;Explosive 5.56&quot;, 8.695652173913043);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;Rocket&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;C4&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;Satchel&quot;, 200.0);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;F1 Grenade&quot;, 66.66666666666667);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;Beancan Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;High Velocity Rocket&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;40mm HE Grenade&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgFridge.put(&quot;MLRS Rocket&quot;, 200.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Large Boxes
+<b class="fc">&nbsp;        dmgLargeBox = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;Explosive 5.56&quot;, 8.823529411764706);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;Rocket&quot;, 300.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;C4&quot;, 300.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;Satchel&quot;, 300.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;F1 Grenade&quot;, 75.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;Beancan Grenade&quot;, 60.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;High Velocity Rocket&quot;, 150.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;40mm HE Grenade&quot;, 60.0);</b>
+<b class="fc">&nbsp;        dmgLargeBox.put(&quot;MLRS Rocket&quot;, 300.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Lockers
+<b class="fc">&nbsp;        dmgLocker = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;Explosive 5.56&quot;, 8.928571428571429);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;Rocket&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;C4&quot;, 500.0);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;Satchel&quot;, 500.0);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;F1 Grenade&quot;, 71.42857142857143);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;Beancan Grenade&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;High Velocity Rocket&quot;, 166.6666666666667);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;40mm HE Grenade&quot;, 62.5);</b>
+<b class="fc">&nbsp;        dmgLocker.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Vending Machines
+<b class="fc">&nbsp;        dmgVendingMachine = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;Explosive 5.56&quot;, 2.50501002004008);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;C4&quot;, 416.6666666666667);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;Satchel&quot;, 83.33333333333333);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;F1 Grenade&quot;, 1.007252215954875);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;Beancan Grenade&quot;, 8.992805755395683);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;High Velocity Rocket&quot;, 14.88095238095238);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;40mm HE Grenade&quot;, 17.85714285714286);</b>
+<b class="fc">&nbsp;        dmgVendingMachine.put(&quot;MLRS Rocket&quot;, 156.25);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Fences
+<b class="fc">&nbsp;        dmgFence = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;Explosive 5.56&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;Rocket&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;C4&quot;, 100.0);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;Satchel&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;Beancan Grenade&quot;, 16.66666666666667);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;High Velocity Rocket&quot;, 25.0);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;40mm HE Grenade&quot;, 33.33333333333333);</b>
+<b class="fc">&nbsp;        dmgFence.put(&quot;MLRS Rocket&quot;, 100.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Gates
+<b class="fc">&nbsp;        dmgGate = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;Explosive 5.56&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;Rocket&quot;, 75.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;C4&quot;, 75.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;Satchel&quot;, 75.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;F1 Grenade&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;Beancan Grenade&quot;, 15.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;High Velocity Rocket&quot;, 25.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;40mm HE Grenade&quot;, 25.0);</b>
+<b class="fc">&nbsp;        dmgGate.put(&quot;MLRS Rocket&quot;, 75.0);</b>
+&nbsp;
+&nbsp;        // Data of costs of sulfur to make a single tool listed.
+<b class="fc">&nbsp;        sulfurCosts = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;Explosive 5.56&quot;, 25.0);</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;Rocket&quot;, 1400.0);</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;C4&quot;, 2200.0);</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;Satchel&quot;, 480.0);</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;F1 Grenade&quot;, 60.0);</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;Beancan Grenade&quot;, 120.0);</b>
+<b class="fc">&nbsp;        sulfurCosts.put(&quot;High Velocity Rocket&quot;, 200.0);</b>
+&nbsp;
+&nbsp;        // Health data of the deployables.
+<b class="fc">&nbsp;        deployables = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Wooden Bars&quot;, 250.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Strengthened Glass&quot;, 350.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Metal Bars&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Reinforced Glass&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Wood Door&quot;, 200.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Metal Door&quot;, 250.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Armor Door&quot;, 800.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Garage Door&quot;, 600.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;High Wooden Wall&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;High Stone Wall&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Wood Gate&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Stone Gate&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Stone Barricade&quot;, 100.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Wooden Cover&quot;, 120.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Sandbag&quot;, 200.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Wood Barricade&quot;, 250.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Barbed Wood Barricade&quot;, 400.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Concrete Barricade&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Metal Barricade&quot;, 600.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Triangle Hatch&quot;, 250.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Square Hatch&quot;, 250.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Drop Box&quot;, 100.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Small Box&quot;, 150.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Fridge&quot;, 200.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Large Box&quot;, 300.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Locker&quot;, 500.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Vending Machine&quot;, 1250.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Fence&quot;, 100.0);</b>
+<b class="fc">&nbsp;        deployables.put(&quot;Gate&quot;, 75.0);</b>
+&nbsp;
+&nbsp;        // Health data of the building blocks.
+<b class="fc">&nbsp;        buildingBlocks = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        buildingBlocks.put(&quot;Twig&quot;, 10.0);</b>
+<b class="fc">&nbsp;        buildingBlocks.put(&quot;Wood&quot;, 250.0);</b>
+<b class="fc">&nbsp;        buildingBlocks.put(&quot;Stone&quot;, 500.0);</b>
+<b class="fc">&nbsp;        buildingBlocks.put(&quot;Metal&quot;, 1000.0);</b>
+<b class="fc">&nbsp;        buildingBlocks.put(&quot;Armor&quot;, 2000.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Twig structures
+<b class="fc">&nbsp;        dmgTwig = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;Explosive 5.56&quot;, 5.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;Rocket&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;C4&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;Satchel&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;F1 Grenade&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;Beancan Grenade&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;High Velocity Rocket&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;40mm HE Grenade&quot;, 10.0);</b>
+<b class="fc">&nbsp;        dmgTwig.put(&quot;MLRS Rocket&quot;, 10.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Wooden structures
+<b class="fc">&nbsp;        dmgWood = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;Explosive 5.56&quot;, 5.102040816);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;Satchel&quot;, 83.3334);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;F1 Grenade&quot;, 4.237288136);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;Beancan Grenade&quot;, 19.23076923);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;High Velocity Rocket&quot;, 27.77777778);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;40mm HE Grenade&quot;, 31.25);</b>
+<b class="fc">&nbsp;        dmgWood.put(&quot;MLRS Rocket&quot;, 250.0);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Stone structures
+<b class="fc">&nbsp;        dmgStone = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;Explosive 5.56&quot;, 2.702702703);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;Satchel&quot;, 50.0);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;F1 Grenade&quot;, 2.747252747);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;Beancan Grenade&quot;, 10.86956522);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;High Velocity Rocket&quot;, 15.625);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;40mm HE Grenade&quot;, 17.24137931);</b>
+<b class="fc">&nbsp;        dmgStone.put(&quot;MLRS Rocket&quot;, 166.6666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Metal structures
+<b class="fc">&nbsp;        dmgMetal = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;Explosive 5.56&quot;, 2.169197397);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;Rocket&quot;, 125.0);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;Satchel&quot;, 43.47826087);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;F1 Grenade&quot;, 1.007049345);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;Beancan Grenade&quot;, 8.928571429);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;High Velocity Rocket&quot;, 14.92537313);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;40mm HE Grenade&quot;, 17.54385965);</b>
+<b class="fc">&nbsp;        dmgMetal.put(&quot;MLRS Rocket&quot;, 166.6666667);</b>
+&nbsp;
+&nbsp;        // Data of damage towards Armored structures
+<b class="fc">&nbsp;        dmgArmor = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;Explosive 5.56&quot;, 2.503128911);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;Rocket&quot;, 133.3333333);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;C4&quot;, 250.0);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;Satchel&quot;, 43.47826087);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;F1 Grenade&quot;, 1.007049345);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;Beancan Grenade&quot;, 8.968609865);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;High Velocity Rocket&quot;, 14.92537313);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;40mm HE Grenade&quot;, 17.54385965);</b>
+<b class="fc">&nbsp;        dmgArmor.put(&quot;MLRS Rocket&quot;, 166.6666667);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-03 14:22</div>
+</div>
+</body>
+</html>
