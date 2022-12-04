@@ -1,6 +1,6 @@
 # FinalCS2: Rust Raid Calculator (rrc)
 
-### This repo contains software in both CLI and GUI forms which calculates the amount of supplies you need for a raid in the video game: Rust.
+### This repo contains software in both CLI and GUI forms which calculates the amount of supplies you need for a raid in the video game, Rust, by using Maps, Sets, and Recursion.
 
 ### Features:
 - Select blocks and deployables for calculation
